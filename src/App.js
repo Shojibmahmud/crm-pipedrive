@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import CustomerDetailsForm from "./components/CustomerDetailsForm";
+import JobDetailsForm from "./components/JobDetailsForm";
+import ServiceLocationForm from "./components/ServiceLocationForm";
+import ScheduleForm from "./components/ScheduleForm";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [isSaved, setSaved] = useState(false);
+
+	const handleSave = () => {
+		setSaved(true);
+	};
+
+	return (
+		<div>
+			<h1>Create a Job</h1>
+			<CustomerDetailsForm />
+			<JobDetailsForm />
+			<ServiceLocationForm />
+			<ScheduleForm></ScheduleForm>
+			<br />
+			<button
+				className={`btn ${isSaved ? "btn-warning" : "btn-primary"} mb-3`}
+				style={{ marginLeft: "10px" }}
+				onClick={handleSave}>
+				{isSaved ? "Have Been Saved" : "Save"}
+			</button>
+		</div>
+	);
 }
 
 export default App;
